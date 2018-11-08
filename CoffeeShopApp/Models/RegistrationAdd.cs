@@ -25,19 +25,25 @@ namespace CoffeeShopApp.Models
         [RegularExpression(@"^\d{3}-\d{3}-\d{4}$")]
         public string PhoneNumber { set; get; }
 
+        [Required]
+        [RegularExpression(@"^[A-z0-9]{5,30}$")]
+        public string Password { set; get; }
+
         public RegistrationAdd()
         {
             FirstName = "";
             LastName = "";
             Email = "";
             PhoneNumber = "";
+            Password = "";
         }
-        public RegistrationAdd(string fn, string ln, string em, string ph)
+        public RegistrationAdd(string fn, string ln, string em, string ph, string pa)
         {
             FirstName = fn;
             LastName = ln;
             Email = em;
             PhoneNumber = ph;
+            Password = pa;
         }
     }
 }
