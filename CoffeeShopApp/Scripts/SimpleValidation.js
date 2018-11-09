@@ -1,15 +1,21 @@
 ﻿function validateForm() {
-    var firstNameRegex = /^[A-Z]+[A-z]{1,30}$/
-    var lastNameRegex = /^[A-Z]+[A-z]{1,30}$/
-    var EmailRegex = /^([A-z0-9]{5,30})@([A-z]{5,10}).([a-z]{2,3})$/
-    var PhoneRegex = /^\d{3}-\d{3}-\d{4}$/
-    var PasswordRegex = /^[A-z0-9]{5,30}$/
+    var firstNameRegex = /^[A-Z]+[A-z]{1,30}$/;
+    var lastNameRegex = /^[A-Z]+[A-z]{1,30}$/;
+    var EmailRegex = /^([A-z0-9]{5,30})@([A-z]{5,10}).([a-z]{2,3})$/;
+    var PhoneRegex = /^\d{3}-\d{3}-\d{4}$/;
+    var PasswordRegex = /^[A-z0-9]{5,30}$/;
     var first;
     var last;
     var email;
     var phone;
     var password;
 
+    document.getElementById("errorfirst").innerHTML = "";
+    document.getElementById("errorlast").innerHTML = "";
+    document.getElementById("errorphone").innerHTML = "";
+    document.getElementById("erroremail").innerHTML = "";
+    document.getElementById("errorpassword").innerHTML = "";
+    //var w = document.getElementById("FirstName").value;
     var w = document.forms["userReg"]["FirstName"].value;
     if (firstNameRegex.test(w)) {
         first = true;
@@ -64,27 +70,41 @@
     }
     else {
         if (first === false) {
-            alert("First Name Not Valid");
+            document.getElementById("errorfirst").innerHTML = "First Name Not Valid Try Again";
         }
 
         if (last === false) {
-            alert("Last Name Not Valid");
+            document.getElementById("errorlast").innerHTML = "Last Name Not Valid Try Again";
         }
 
         if (email === false) {
-            alert("Email Not Valid. Must valid address");
+            document.getElementById("erroremail").innerHTML = "Email Not Valid Try Again";
         }
 
         if (phone === false) {
-            alert("Phone must be in format of 555-555-5555");
+            document.getElementById("errorphone").innerHTML = "Phone Number Must Be In Format 555-555-5555";
         }
 
         if (password === false) {
-            alert("Invalid Password");
+            document.getElementById("errorpassword").innerHTML = "Password Must Be ____";
         }
 
 
         return false;
     }
 
+}
+var check = function () {
+    if (document.getElementById("Password").value === document.getElementById("PasswordConfirm").value) {
+
+        //document.getElementById("PasswordConfirm").style.input[type = password] = "green";
+        document.getElementById("message").style.color = "green";
+        document.getElementById("message").innerHTML = "Passwords Match";
+    }
+    else {
+
+        //document.getElementById("Password").style.input[type = password] = "red";
+        document.getElementById("message").style.color = "red";
+        document.getElementById("message").innerHTML = "Passwords do not match";
+    }
 }

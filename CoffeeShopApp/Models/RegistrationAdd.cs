@@ -18,7 +18,7 @@ namespace CoffeeShopApp.Models
         public string LastName { set; get; }
 
         [Required]
-        [RegularExpression(@"^([A-z0-9]{5,30})@([A-z]{5,10}).([a-z]{2,3})$")]
+        [RegularExpression(@"^([A-z0-9]{5,30})@([A-z]{3,10}).([a-z]{2,3})$")]
         public string Email { set; get; }
 
         [Required]
