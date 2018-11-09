@@ -97,12 +97,16 @@
 var check = function () {
     if (document.getElementById("Password").value === document.getElementById("PasswordConfirm").value) {
 
+        document.querySelector("input[type=password]").style.border = "2px solid green";
+        document.getElementById("PasswordConfirm").style.border = "2px solid green";
         //document.getElementById("PasswordConfirm").style.input[type = password] = "green";
         document.getElementById("message").style.color = "green";
         document.getElementById("message").innerHTML = "Passwords Match";
     }
     else {
 
+        document.querySelector("input[type=password]").style.border = "2px solid red";
+        document.getElementById("PasswordConfirm").style.border = "2px solid red";
         //document.getElementById("Password").style.input[type = password] = "red";
         document.getElementById("message").style.color = "red";
         document.getElementById("message").innerHTML = "Passwords do not match";
