@@ -2,4 +2,23 @@
     ViewBag.Title = "Home Page";
 }
 <h2>Welcome to the GC Coffee House</h2>
-<div><p><a href="Registration">Register</a></p></div>
+
+<div><b>Table Format Data Displaying in ForEach</b><br /></div>
+<table class="table table-bordered table-responsive table-hover">
+    <tr>
+        <th>Item Name </th>
+        <th>Description </th>
+        <th>Price </th>
+        <th>Quantity</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ItemName</td>
+            <td>@item.Description</td>
+            <td>@item.Price</td>
+            <td>@item.Quantity</td>
+        </tr>
+    }
+</table>
+

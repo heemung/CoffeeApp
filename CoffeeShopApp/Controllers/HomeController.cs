@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -64,5 +65,36 @@ namespace CoffeeShopApp.Controllers
 
             }
         }
-    }
+        /*
+        public ActionResult ItemsFromDB(Item getItem)
+        {
+            if (ModelState.IsValid)
+            {
+                CoffeeShopDB itemDatabase = new CoffeeShopDB();
+
+                itemDatabase.Items.Where(x => x.ItemName == "Banana"))
+                {
+                    ViewBag.ConfMessage = "Thanks " + newUser.fName;
+                    return View("Index");
+
+                }
+                else
+                {
+                    ViewBag.WhatError = "Item issue";
+                    return View("Error");
+
+                }
+
+
+
+
+                return View("Successful");
+            }
+
+            else
+            {
+
+
+            }*/
+        }
 }
