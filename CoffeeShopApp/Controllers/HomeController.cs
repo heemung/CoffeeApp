@@ -11,6 +11,7 @@ namespace CoffeeShopApp.Controllers
     {
         public ActionResult Index()
         {
+
             return View();
         }
 
@@ -40,19 +41,19 @@ namespace CoffeeShopApp.Controllers
             return View();
         }
 
-        public ActionResult Reg(RegistrationAdd newUser)
+        public ActionResult Reg(User newUser)
         {
-            // ToDo: validation!!!!!!
-
             if (ModelState.IsValid)
             {
                 // ToDo: Send the data to the DB
 
-                // confirmation, or maybe send to the Index page
+                CoffeeShopDB userDatabase = new CoffeeShopDB();
+                userDatabase.Users.Add(newUser); //insert sql query 
+                userDatabase.SaveChanges();
+                //ORM.Items.Where(x => x.name == "Banana");
 
-                //ViewData["ConfMessage"] = "Thanks " + newUser.FirstName;
 
-                ViewBag.ConfMessage = "Thanks " + newUser.FirstName;
+                ViewBag.ConfMessage = "Thanks " + newUser.fName;
 
                 return View("Successful");
             }

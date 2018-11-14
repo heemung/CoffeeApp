@@ -16,7 +16,7 @@
     document.getElementById("erroremail").innerHTML = "";
     document.getElementById("errorpassword").innerHTML = "";
     //var w = document.getElementById("FirstName").value;
-    var w = document.forms["userReg"]["FirstName"].value;
+    var w = document.forms["userReg"]["fName"].value;
     if (firstNameRegex.test(w)) {
         first = true;
     }
@@ -26,7 +26,7 @@
     }
 
 
-    var x = document.forms["userReg"]["LastName"].value;
+    var x = document.forms["userReg"]["lName"].value;
     if (lastNameRegex.test(x)) {
         last = true;
     }
@@ -36,7 +36,7 @@
     }
 
 
-    var y = document.forms["userReg"]["Email"].value;
+    var y = document.forms["userReg"]["email"].value;
     if (EmailRegex.test(y)) {
         email = true;
     }
@@ -46,7 +46,7 @@
     }
 
 
-    var z = document.forms["userReg"]["PhoneNumber"].value;
+    var z = document.forms["userReg"]["phone"].value;
     if (PhoneRegex.test(z)) {
         phone = true;
     }
@@ -55,7 +55,7 @@
         phone = false;
     }
 
-    var p = document.forms["userReg"]["Password"].value;
+    var p = document.forms["userReg"]["password"].value;
     if (PasswordRegex.test(p)) {
         password = true;
     }
