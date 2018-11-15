@@ -100,24 +100,34 @@ namespace CoffeeShopApp.Controllers
             }
         }
 
-        public ActionResult Delete(string theItemName)
+        //doesnt work
+        [HttpPost, ActionName("Delete")]
+        public ActionResult DeleteConfirmed(Item findItem)
         {
-            if (ModelState.IsValid)
-            {
-                CoffeeShopDB itemDatabase = new CoffeeShopDB();
-                itemDatabase.Items.Find(theItemName);
-                itemDatabase.SaveChanges();
+            CoffeeShopDB itemDatabase = new CoffeeShopDB();
 
-                return View("Admin");
-            }
-            //public ActionResult Create([Bind(Include = "ID,name,color")] ColorDB colorDB)
-            else
-            {
-                return View("Error");
-
-            }
+            var item = itemDatabase.Items.Where(x => x.ItemName == findItem.ItemName);
 
 
+            //itemDatabase.Find(id);
+            //db.ColorDBs.Remove(colorDB);
+            //db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        //doesnt work
+        [HttpPost, ActionName("Edit")]
+        public ActionResult Edit(Item findItem)
+        {
+            CoffeeShopDB itemDatabase = new CoffeeShopDB();
+
+            var item = itemDatabase.Items.Where(x => x.ItemName == findItem.ItemName);
+
+
+            //itemDatabase.Find(id);
+            //db.ColorDBs.Remove(colorDB);
+            //db.SaveChanges();
+            return RedirectToAction("Index");
         }
 
         public ActionResult Reg(User newUser)
