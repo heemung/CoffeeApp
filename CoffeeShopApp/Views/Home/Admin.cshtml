@@ -1,9 +1,11 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿
+@{
+    ViewBag.Title = "Admin";
 }
-<h2>Welcome to the GC Coffee House</h2>
 
-<div><b>Table Format Data Displaying in ForEach</b><br /></div>
+<h2>Admin</h2>
+<p></p>
+
 <table class="table table-bordered table-responsive table-hover">
     <tr>
         <th>Item Name </th>
@@ -18,7 +20,11 @@
             <td>@item.Description</td>
             <td>@item.Price</td>
             <td>@item.Quantity</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.ItemName }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.ItemName })
+            </td>
         </tr>
     }
 </table>
-
+<p>@Html.ActionLink("Add Item", "AdminAddPage", "Home", new { @class = "elements" }, null)</p>

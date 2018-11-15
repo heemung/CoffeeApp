@@ -242,6 +242,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Registration.cshtml" />
     <Content Include="Views\Home\Successful.cshtml" />
+    <Content Include="Views\Home\Admin.cshtml" />
+    <Content Include="Views\Home\AdminAddPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

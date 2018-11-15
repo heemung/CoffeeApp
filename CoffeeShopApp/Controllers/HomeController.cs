@@ -12,7 +12,9 @@ namespace CoffeeShopApp.Controllers
     {
         public ActionResult Index()
         {
+            CoffeeShopDB itemDatabase = new CoffeeShopDB();
 
+            ViewBag.AllItems = itemDatabase.Items.ToList<Item>();
             return View();
         }
 
@@ -42,6 +44,82 @@ namespace CoffeeShopApp.Controllers
             return View();
         }
 
+        public ActionResult Admin()
+        {
+
+            CoffeeShopDB itemDatabase = new CoffeeShopDB();
+
+            ViewBag.AllItems = itemDatabase.Items.ToList<Item>();
+            return View();
+         
+        }
+        //add works
+        public ActionResult AdminAddPage()
+        {
+            return View();
+        }
+        //add works by passing in the allitems viewbag and running a try catch to get more details on expections
+        public ActionResult Add(Item newItem)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    CoffeeShopDB itemDatabase = new CoffeeShopDB();
+
+
+                    var searchDup = itemDatabase.Items.Where(x => x.ItemName == newItem.ItemName).SingleOrDefault();
+
+                    if(searchDup == null)
+                    {
+                        itemDatabase.Items.Add(newItem);
+                        itemDatabase.SaveChanges();
+
+                        ViewBag.AllItems = itemDatabase.Items.ToList<Item>();
+                        return View("Admin");
+                    }
+                    else
+                    {
+                        ViewBag.WhereError = "Item Already in database"; 
+                        return View("Error");
+                    }
+
+                }
+
+                else
+                {
+                    ViewBag.WhereError = "Model State Not Vaild";
+                    return View("Error");
+
+                }
+            }
+            catch (Exception)
+            {
+                ViewBag.WhereError = "Exception Error in Add Item";
+                return View("Error");
+            }
+        }
+
+        public ActionResult Delete(string theItemName)
+        {
+            if (ModelState.IsValid)
+            {
+                CoffeeShopDB itemDatabase = new CoffeeShopDB();
+                itemDatabase.Items.Find(theItemName);
+                itemDatabase.SaveChanges();
+
+                return View("Admin");
+            }
+            //public ActionResult Create([Bind(Include = "ID,name,color")] ColorDB colorDB)
+            else
+            {
+                return View("Error");
+
+            }
+
+
+        }
+
         public ActionResult Reg(User newUser)
         {
             if (ModelState.IsValid)
@@ -49,9 +127,8 @@ namespace CoffeeShopApp.Controllers
                 // ToDo: Send the data to the DB
 
                 CoffeeShopDB userDatabase = new CoffeeShopDB();
-                userDatabase.Users.Add(newUser); //insert sql query 
+                userDatabase.Users.Add(newUser);
                 userDatabase.SaveChanges();
-                //ORM.Items.Where(x => x.name == "Banana");
 
 
                 ViewBag.ConfMessage = "Thanks " + newUser.fName;
@@ -65,36 +142,6 @@ namespace CoffeeShopApp.Controllers
 
             }
         }
-        /*
-        public ActionResult ItemsFromDB(Item getItem)
-        {
-            if (ModelState.IsValid)
-            {
-                CoffeeShopDB itemDatabase = new CoffeeShopDB();
-
-                itemDatabase.Items.Where(x => x.ItemName == "Banana"))
-                {
-                    ViewBag.ConfMessage = "Thanks " + newUser.fName;
-                    return View("Index");
-
-                }
-                else
-                {
-                    ViewBag.WhatError = "Item issue";
-                    return View("Error");
-
-                }
-
-
-
-
-                return View("Successful");
-            }
-
-            else
-            {
-
-
-            }*/
-        }
+        
+    }
 }
